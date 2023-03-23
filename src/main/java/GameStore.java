@@ -2,10 +2,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 public class GameStore {
     private List<Game> games = new ArrayList<>();
 
-      /**
+    /**
      * Информация о том, какой игрок сколько играл в игры этого каталога
      * Ключ - имя игрока
      * Значение - суммарное количество часов в игры этого каталога
@@ -29,7 +30,9 @@ public class GameStore {
      */
 
     public boolean containsGame(Game game) {
-        for (int i =0; i < games.size(); i++) {
+
+        for (int i = 0; i < games.size(); i++) {
+
             if (games.get(i).equals(game)) {
                 return true;
             }
@@ -44,20 +47,24 @@ public class GameStore {
      * суммироваться с прошлым значением для этого игрока
      */
 
-    public void addPlayTime(String playerName, int hours) {
+    public  int addPlayTime(String playerName, int hours) {
+        int sum = 0;
         if (playedTime.containsKey(playerName)) {
-            playedTime.put(playerName, playedTime.get(playerName));
+            sum = (playedTime.get(playerName) + hours);
+            playedTime.put(playerName, sum);
         } else {
             playedTime.put(playerName, hours);
+            sum = hours;
         }
+        return sum;
     }
 
     /**
      * Ищет имя игрока, который играл в игры этого каталога больше всего
-     * времени. Если игроков нет, то возвращется null
+     * времени. Если игроков нет, то возвращается null
      */
     public String getMostPlayer() {
-        int mostTime = 1;
+        int mostTime = 0;
         String bestPlayer = null;
         for (String playerName : playedTime.keySet()) {
             int playerTime = playedTime.get(playerName);
@@ -74,7 +81,9 @@ public class GameStore {
      * за играми этого каталога
      */
     public int getSumPlayedTime() {
-        return 0;
+
+        int sum = playedTime.values().stream().reduce(0, Integer::sum);
+        return sum;
     }
 
 }
