@@ -91,7 +91,7 @@ public class GameStoreTest {
 
     }
 @Test
-    public void shouldAddGameTwo() {
+    public void shouldNotShowTheGameOfAnotherStore() {
 
         GameStore storeOne = new GameStore();
         GameStore storeTwo = new GameStore();
