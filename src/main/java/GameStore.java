@@ -20,7 +20,8 @@ public class GameStore {
      */
     public Game publishGame(String title, String genre) {
         Game game = new Game(title, genre, this);
-        games.add(game);
+        if (!containsGame(game)){
+        games.add(game);}
         return game;
     }
 
