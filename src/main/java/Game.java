@@ -37,4 +37,13 @@ public class Game {
     public int hashCode() {
         return Objects.hash(title, genre, store);
     }
+
+    @Override
+    public String toString() {
+        return "\n"+"Game{ " +
+                "title='" + title +'\'' +
+                ", genre='" + genre  +'\''+
+               // ", store=" + store +
+                '}';
+    }
 }
